@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LifeHub Dashboard</title>
+  <link rel="stylesheet" href="/styles.css?v=reload-button1">
+</head>
+<body>
+  <main>
+    <header class="topbar">
+      <div class="date-weather"><div><p id="date"></p><h1 id="time">--:--</h1></div><div id="weather" class="weather"></div></div>
+      <div class="brand"><span class="pulse"></span> LIFEHUB</div>
+      <div class="status-area">
+        <div class="top-actions">
+          <form id="command-form" class="command-form"><input id="command-input" aria-label="LifeHub command" placeholder="Command LifeHub..." autocomplete="off"><button type="submit">Go</button></form>
+          <button id="reload-page" class="top-button" type="button">Reload</button>
+          <button id="sleep-screen" class="sleep-button" type="button">Sleep</button>
+        </div>
+        <div class="status"><span id="command-result"></span><span><b id="live-status">Connecting...</b> | <span id="sync"></span> | <strong id="day-status"></strong></span></div>
+      </div>
+    </header>
+
+    <section class="hero-grid">
+      <article class="card now"><p class="eyebrow">NOW</p><h2 id="now-title"></h2><p id="now-detail"></p></article>
+      <article class="card next"><p class="eyebrow">NEXT SHIFT</p><h2 id="next-shift-title"></h2><p id="next-shift-detail"></p></article>
+      <article class="card next-school"><p class="eyebrow">NEXT SCHOOL WORK</p><h2 id="next-school-title"></h2><p id="next-school-detail"></p></article>
+    </section>
+
+    <section class="dashboard-shell">
+    <section class="dashboard-grid">
+      <article id="tomorrow-card" class="card tomorrow-card"><p class="eyebrow">TOMORROW</p><div id="tomorrow"></div></article>
+      <article id="timeline-card" class="card timeline-card"><div class="card-heading timeline-heading"><p id="timeline-title" class="eyebrow">TODAY TIMELINE</p><div class="view-toggle"><button id="show-today" class="active">Today</button><button id="show-week">Week</button></div></div><div id="timeline"></div></article>
+      <article class="card span-2"><p class="eyebrow">WORK SCHEDULE</p><div id="schedule"></div></article>
+      <article class="card workout"><p class="eyebrow">WORKOUT</p><div id="workout"></div></article>
+      <article class="card assignments"><p class="eyebrow">ASSIGNMENTS</p><div id="assignments"></div></article>
+      <article id="hydration-card" class="card hydration"><p class="eyebrow">HYDRATION</p><div id="hydration"></div></article>
+      <article id="grocery-card" class="card checklist-card"><div class="card-heading"><p class="eyebrow">GROCERY</p><button class="complete-all" data-group="groceries">Done</button></div><div id="groceries"></div></article>
+      <article id="chores-card" class="card checklist-card"><div class="card-heading"><p class="eyebrow">CHORES</p><button class="complete-all" data-group="chores">Done</button></div><div id="chores"></div></article>
+      <article id="wake-card" class="card checklist-card"><div class="card-heading"><p class="eyebrow">WAKE-UP</p><button class="complete-all" data-group="wake_up">Done</button></div><div id="wake-routine"></div></article>
+      <article class="card winddown"><p class="eyebrow">SLEEP PLAN</p><h2 id="winddown"></h2><p id="sleep-plan"></p></article>
+      <article class="card alerts-card"><p class="eyebrow">ALERTS</p><section id="alerts" class="alerts"></section></article>
+      <article id="conflicts-card" class="card conflicts-card"><p class="eyebrow">CONFLICT CHECK</p><div id="conflicts"></div></article>
+      <article id="sync-card" class="card sync-card"><p class="eyebrow">DATA SOURCES</p><div id="sync-details"></div><button id="sync-now" class="action-button">Sync now</button></article>
+    </section>
+    </section>
+    <nav class="phone-controls" aria-label="Phone controls">
+      <button data-target="tomorrow-card">Tomorrow</button>
+      <button data-target="timeline-card">Timeline</button>
+      <button data-target="hydration-card" id="phone-hydration">+ Bottle</button>
+      <button data-target="chores-card">Chores</button>
+      <button data-target="grocery-card">Grocery</button>
+      <button data-target="sync-card" id="phone-sync">Sync</button>
+    </nav>
+  </main>
+  <section id="sleep-overlay" class="sleep-overlay" aria-hidden="true">
+    <div>
+      <strong>LifeHub Sleeping</strong>
+      <span>Tap anywhere to wake</span>
+    </div>
+  </section>
+  <script src="/app.js?v=reload-button1"></script>
+</body>
+</html>

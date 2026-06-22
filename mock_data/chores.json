@@ -1,0 +1,6 @@
+[
+  {"id": "clothes", "title": "Pick clothes up off floor", "weekday": "Daily", "due_time": "20:00"},
+  {"id": "trash", "title": "Take out trash", "weekday": "Wednesday", "due_time": "21:00"},
+  {"id": "room", "title": "Clean room", "weekday": "Saturday", "due_time": "13:00"},
+  {"id": "laundry", "title": "Do laundry", "weekday": "Sunday", "due_time": "14:00"}
+]

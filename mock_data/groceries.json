@@ -1,0 +1,34 @@
+[
+  {
+    "id": "g1",
+    "name": "Bananas",
+    "quantity": "6"
+  },
+  {
+    "id": "g2",
+    "name": "Greek yogurt",
+    "quantity": "1 tub"
+  },
+  {
+    "id": "g3",
+    "name": "Rice",
+    "quantity": "1 bag"
+  },
+  {
+    "id": "g4",
+    "name": "Chicken breast",
+    "quantity": "2 lb"
+  },
+  {
+    "id": "g5",
+    "name": "Coffee",
+    "quantity": "1 bag",
+    "checked": true
+  },
+  {
+    "id": "g-milk-6",
+    "name": "milk",
+    "quantity": "1",
+    "checked": false
+  }
+]

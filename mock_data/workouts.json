@@ -1,0 +1,111 @@
+[
+  {
+    "id": "mon-acceleration-lower",
+    "name": "Acceleration and Lower Lift",
+    "weekday": "Monday",
+    "duration_minutes": 150,
+    "includes_lifting": true,
+    "intensity": "High intensity sprint and lower-body strength day",
+    "backup_plan_template": "Abbreviated lower-body strength and core session; move acceleration work to a safe track window",
+    "details": ["Acceleration", "Lower lift", "Core"],
+    "sections": [
+      {"name": "Warmup", "items": ["General warmup", "Hip mobility", "Straight-leg bounds x2"]},
+      {"name": "Sprint Work", "cue": "Rest 2-4 minutes between reps", "items": ["4 x 20m at 90%", "4 x 30m at 95%"]},
+      {"name": "Lift", "items": ["Back squat 3 x 5", "RDL 3 x 6", "Walking lunges 3 x 8 each leg", "Straight-leg calf isometric holds 3 x 30-45 sec", "Bent-knee soleus holds 3 x 30-45 sec", "Nordic curls or slider curls 2 x 4-5 slow eccentric", "Tibialis raises 2 x 15-20", "Core 3 sets"]},
+      {"name": "Cooldown", "items": ["Rollout", "Stretch"]}
+    ]
+  },
+  {
+    "id": "tue-tempo-hurdles",
+    "name": "Tempo and Hurdle Mobility",
+    "weekday": "Tuesday",
+    "duration_minutes": 110,
+    "includes_lifting": false,
+    "intensity": "Tempo conditioning and technical hurdle mobility",
+    "backup_plan_template": "20-minute tempo run plus hurdle mobility drills without hurdles",
+    "details": ["Hurdle mobility", "6 x 200m tempo"],
+    "sections": [
+      {"name": "Warmup", "items": ["General warmup", "Hip mobility"]},
+      {"name": "Hurdles", "cue": "36-inch hurdles, 1 meter short", "items": ["Walkovers", "Trail-leg drills", "Lead-leg drills", "Over the top, 5-step", "3-step over: 5 hurdles x 4 reps"]},
+      {"name": "Workout", "cue": "Rest 2 minutes between reps", "items": ["6 x 200m at 30-second pace"]},
+      {"name": "Cooldown", "items": ["Rollout", "Stretch"]}
+    ]
+  },
+  {
+    "id": "wed-upper-lift-shotput",
+    "name": "Upper Lift and Shotput",
+    "weekday": "Wednesday",
+    "duration_minutes": 110,
+    "includes_lifting": true,
+    "intensity": "Upper-body power and strength day",
+    "backup_plan_template": "Abbreviated upper-body lift plus standing power throws if space is safe",
+    "details": ["Shotput", "Upper lift"],
+    "sections": [
+      {"name": "Shotput", "items": ["Power throw x3", "Split-leg throw x3", "Fulls x3"]},
+      {"name": "Lift", "items": ["Bench 4 x 5", "Fast pull-ups 3 x 6", "Shoulder press 3 x 6", "High bar swings 3 x 6-10", "Calf isometric holds 2 x 30 sec", "Tibialis raises 2 x 15"]},
+      {"name": "Cooldown", "items": ["Rollout", "Stretch"]}
+    ]
+  },
+  {
+    "id": "thu-long-jump",
+    "name": "Long Jump",
+    "weekday": "Thursday",
+    "duration_minutes": 120,
+    "includes_lifting": false,
+    "intensity": "Technical jump and reactive work",
+    "backup_plan_template": "Low-impact approach rhythm, penultimate drills, and landing-position rehearsal",
+    "details": ["Reactive work", "Takeoff", "Landing", "Full jumps"],
+    "sections": [
+      {"name": "Warmup", "items": ["General warmup", "Hip mobility"]},
+      {"name": "Reactive Work", "cue": "Quick off the ground", "items": ["Pogos 2 x 20", "Bounds 2-3 x 20m"]},
+      {"name": "Takeoff Prep", "cue": "Step down under me, hips through", "items": ["Run-run-jump contacts 3 x 20m", "Flat-flat-pop / penultimate drill 3-4 reps"]},
+      {"name": "Landing Work", "cue": "Heels out, sweep through", "items": ["Standing long jump landing 3 x 3", "4-step landing focus 2-3 reps"]},
+      {"name": "Jump Work", "cue": "Tall and smooth, run through the board", "items": ["6-step approaches x2", "8-step approaches x2", "8-step approach with pop-up x1-2", "6-step fulls x2", "8-step fulls x2"]},
+      {"name": "Cooldown", "items": ["Rollout", "Stretch"]}
+    ]
+  },
+  {
+    "id": "fri-max-velocity-power",
+    "name": "Max Velocity and Power Lift",
+    "weekday": "Friday",
+    "duration_minutes": 150,
+    "includes_lifting": true,
+    "intensity": "High quality max-velocity sprint and power day",
+    "backup_plan_template": "Recovery and mobility only; do not force max-velocity work in a poor window",
+    "details": ["Max velocity", "Power lift"],
+    "sections": [
+      {"name": "Warmup", "items": ["General warmup", "Hip mobility", "Straight-leg bounds"]},
+      {"name": "Sprint Work", "cue": "High quality; rest 4-6 minutes between reps", "items": ["3 x fly 20m at 70%-80%-90%", "Use spikes if feeling good", "3 x fly 30m at 95%", "2 x 60m fast but controlled"]},
+      {"name": "Lift", "items": ["Hang clean 4 x 3", "Box jumps 2 x 5", "Single-leg box jumps 2 x 5 each leg", "Step-ups 3 x 6 each leg", "Slider/roller curls or razor curls 2 x 5", "Pogos 2 x 15, light and reactive"]},
+      {"name": "Cooldown", "items": ["Rollout", "Stretch"]}
+    ]
+  },
+  {
+    "id": "sat-technical",
+    "name": "Jumps, Hurdles, and Throws",
+    "weekday": "Saturday",
+    "duration_minutes": 140,
+    "includes_lifting": false,
+    "intensity": "Technical day, not maximum intensity",
+    "backup_plan_template": "Short technical drill session focused on approach rhythm and throwing positions",
+    "details": ["High jump", "Hurdles", "Throws"],
+    "sections": [
+      {"name": "Warmup", "items": ["General warmup", "Hip mobility"]},
+      {"name": "High Jump", "cue": "Put on spikes", "items": ["6-8 approach runs", "3-5 jumps"]},
+      {"name": "Hurdles", "cue": "39-inch hurdles, 1 foot crammed; rhythm focus", "items": ["3-step over: 5 hurdles x 2-3 reps"]},
+      {"name": "Throws", "items": ["8-10 discus or javelin throws"]},
+      {"name": "Cooldown", "items": ["Rollout", "Stretch"]}
+    ]
+  },
+  {
+    "id": "sun-off",
+    "name": "Off Day",
+    "weekday": "Sunday",
+    "duration_minutes": 0,
+    "includes_lifting": false,
+    "intensity": "Recovery",
+    "is_rest_day": true,
+    "details": ["Rest"],
+    "sections": [{"name": "Goal", "items": ["Rest and recover for Monday"]}]
+  }
+]

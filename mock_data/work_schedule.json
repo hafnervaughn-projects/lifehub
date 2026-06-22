@@ -1,0 +1,52 @@
+[
+  {
+    "id": "schedulefly-2026-06-16-event",
+    "title": "Work: Event",
+    "date": "2026-06-16",
+    "start_time": "12:00",
+    "end_time": "16:00",
+    "category": "work",
+    "location": "Event",
+    "source": "schedulefly-snapshot"
+  },
+  {
+    "id": "schedulefly-2026-06-17-library",
+    "title": "Work: Library",
+    "date": "2026-06-17",
+    "start_time": "17:00",
+    "end_time": "00:00",
+    "category": "work",
+    "location": "Library",
+    "source": "schedulefly-snapshot"
+  },
+  {
+    "id": "schedulefly-2026-06-19-library",
+    "title": "Work: Library",
+    "date": "2026-06-19",
+    "start_time": "16:30",
+    "end_time": "00:00",
+    "category": "work",
+    "location": "Library",
+    "source": "schedulefly-snapshot"
+  },
+  {
+    "id": "schedulefly-2026-06-20-library",
+    "title": "Work: Library",
+    "date": "2026-06-20",
+    "start_time": "16:00",
+    "end_time": "00:00",
+    "category": "work",
+    "location": "Library",
+    "source": "schedulefly-snapshot"
+  },
+  {
+    "id": "schedulefly-2026-06-21-library",
+    "title": "Work: Library",
+    "date": "2026-06-21",
+    "start_time": "16:00",
+    "end_time": "00:00",
+    "category": "work",
+    "location": "Library",
+    "source": "schedulefly-snapshot"
+  }
+]

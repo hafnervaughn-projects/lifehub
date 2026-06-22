@@ -1,0 +1,200 @@
+{
+  "generated_at": "2026-06-11T22:38:05.708327",
+  "sync_status": "Schedulefly snapshot imported | Canvas feed synced",
+  "day_status": "Attention needed",
+  "now": {
+    "title": "Open focus block",
+    "type": "focus",
+    "until": null
+  },
+  "next": {
+    "title": "Work: Lunch Support",
+    "type": "work",
+    "at": "2026-06-13T09:00:00"
+  },
+  "next_shift": {
+    "title": "Work: Lunch Support",
+    "at": "2026-06-13T09:00:00",
+    "end": "2026-06-13T16:00:00",
+    "location": "Upstairs"
+  },
+  "next_school_work": null,
+  "schedule": [
+    {
+      "id": "schedulefly-2026-06-13-lunch",
+      "title": "Work: Lunch Support",
+      "start": "2026-06-13T09:00:00",
+      "end": "2026-06-13T16:00:00",
+      "category": "work",
+      "location": "Upstairs",
+      "source": "schedulefly-snapshot",
+      "important": true
+    },
+    {
+      "id": "schedulefly-2026-06-13-dinner",
+      "title": "Work: Dinner Support",
+      "start": "2026-06-13T17:00:00",
+      "end": "2026-06-14T00:00:00",
+      "category": "work",
+      "location": "Homeroom Foodrunner",
+      "source": "schedulefly-snapshot",
+      "important": true
+    },
+    {
+      "id": "schedulefly-2026-06-14-dinner",
+      "title": "Work: Dinner Support",
+      "start": "2026-06-14T16:00:00",
+      "end": "2026-06-15T00:00:00",
+      "category": "work",
+      "location": "Library",
+      "source": "schedulefly-snapshot",
+      "important": true
+    }
+  ],
+  "workout": {
+    "id": "thu-long-jump",
+    "name": "Long Jump",
+    "weekday": "Thursday",
+    "duration_minutes": 120,
+    "includes_lifting": false,
+    "details": [
+      "Reactive work",
+      "Takeoff",
+      "Landing",
+      "Full jumps"
+    ],
+    "sections": [
+      {
+        "name": "Warmup",
+        "items": [
+          "General warmup",
+          "Hip mobility"
+        ],
+        "cue": ""
+      },
+      {
+        "name": "Reactive Work",
+        "items": [
+          "Pogos 2 x 20",
+          "Bounds 2-3 x 20m"
+        ],
+        "cue": "Quick off the ground"
+      },
+      {
+        "name": "Takeoff Prep",
+        "items": [
+          "Run-run-jump contacts 3 x 20m",
+          "Flat-flat-pop / penultimate drill 3-4 reps"
+        ],
+        "cue": "Step down under me, hips through"
+      },
+      {
+        "name": "Landing Work",
+        "items": [
+          "Standing long jump landing 3 x 3",
+          "4-step landing focus 2-3 reps"
+        ],
+        "cue": "Heels out, sweep through"
+      },
+      {
+        "name": "Jump Work",
+        "items": [
+          "6-step approaches x2",
+          "8-step approaches x2",
+          "8-step approach with pop-up x1-2",
+          "6-step fulls x2",
+          "8-step fulls x2"
+        ],
+        "cue": "Tall and smooth, run through the board"
+      },
+      {
+        "name": "Cooldown",
+        "items": [
+          "Rollout",
+          "Stretch"
+        ],
+        "cue": ""
+      }
+    ],
+    "intensity": "Technical jump and reactive work",
+    "is_rest_day": false,
+    "backup_plan_template": "Low-impact approach rhythm, penultimate drills, and landing-position rehearsal",
+    "recommended_start": null,
+    "backup_plan": "Low-impact approach rhythm, penultimate drills, and landing-position rehearsal"
+  },
+  "assignments": [],
+  "hydration": {
+    "bottle_goal": 5,
+    "current_bottles": 5,
+    "next_checkpoint": null,
+    "status": "complete",
+    "message": "Daily hydration goal complete"
+  },
+  "groceries": [
+    {
+      "id": "g1",
+      "name": "Bananas",
+      "quantity": "6",
+      "checked": false
+    },
+    {
+      "id": "g2",
+      "name": "Greek yogurt",
+      "quantity": "1 tub",
+      "checked": false
+    },
+    {
+      "id": "g3",
+      "name": "Rice",
+      "quantity": "1 bag",
+      "checked": false
+    },
+    {
+      "id": "g4",
+      "name": "Chicken breast",
+      "quantity": "2 lb",
+      "checked": false
+    },
+    {
+      "id": "g5",
+      "name": "Coffee",
+      "quantity": "1 bag",
+      "checked": true
+    }
+  ],
+  "chores": [
+    {
+      "id": "clothes",
+      "title": "Pick clothes up off floor",
+      "weekday": "Daily",
+      "due_at": "2026-06-11T20:00:00",
+      "completed": false
+    }
+  ],
+  "wake_up_time": "2026-06-12T10:00:00",
+  "wake_up_routine": [
+    "Stretch",
+    "Rollout",
+    "Shower",
+    "Eat breakfast",
+    "Hydration check"
+  ],
+  "alerts": [
+    {
+      "id": "chore-clothes",
+      "message": "Pick clothes up off floor",
+      "level": "critical",
+      "due_at": "2026-06-11T20:00:00",
+      "action": "Mark complete"
+    }
+  ],
+  "wind_down_time": "2026-06-12T00:30:00",
+  "bedtime": "2026-06-12T01:15:00",
+  "sleep_note": "Target 8.8 hours before tomorrow's first commitment",
+  "checklist_state": {
+    "date": "2026-06-11",
+    "chores": [],
+    "groceries": [],
+    "wake_up": []
+  }
+}

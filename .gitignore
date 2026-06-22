@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+.schedulefly-browser-profile/
+mock_data/*debug*
+mock_data/sync_status.json
+mock_data/weather_cache.json
+
+.DS_Store
+Thumbs.db

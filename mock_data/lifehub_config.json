@@ -1,0 +1,11 @@
+{
+  "sync_interval_minutes": 15,
+  "stale_after_hours": 24,
+  "canvas_ical_url": "",
+  "schedulefly_ical_url": "",
+  "weather": {
+    "latitude": 39.7555,
+    "longitude": -105.2211,
+    "label": "Golden"
+  }
+}
