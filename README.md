@@ -1,72 +1,202 @@
-# LifeHub Software Prototype
+# LifeHub
 
-LifeHub is a mock-data-first calendar and life organization brain for a smart desk. It combines source data in a local Python backend, applies scheduling rules, and emits one clean dashboard JSON object for both a browser and a future ESP32 display.
+LifeHub is a Raspberry Pi touchscreen smart desk dashboard built with a Python backend and a responsive local web interface. It combines work schedules, school assignments, workouts, daily routines, weather, chores, groceries, hydration, sleep planning, alerts, and calendar information into one touchscreen-friendly display.
+
+LifeHub runs locally with:
+
+```bash
+python -m lifehub.server
+```
+
+On the Raspberry Pi, the server starts automatically and launches the dashboard in Chromium fullscreen mode.
+
+## Project Preview
+
+LifeHub runs on a Raspberry Pi 4 connected to a 10.1-inch 1024×600 touchscreen.
+
+### Workout Dashboard
+
+The dashboard displays the current activity, upcoming work and school information, and the complete workout plan for the day.
+
+![LifeHub workout dashboard running on the Raspberry Pi touchscreen](docs/images/lifehub-workout-dashboard.jpg)
+
+### Daily Timeline and Tomorrow Preview
+
+The timeline combines workouts, chores, wind-down time, sleep, and other scheduled activities into a visual daily plan. The tomorrow preview calculates the next workout and an appropriate wake-up time.
+
+![LifeHub today timeline and tomorrow preview](docs/images/lifehub-timeline.jpg)
+
+### Checklists and Daily Routines
+
+Touch-friendly checklist controls allow groceries, chores, and wake-up routine tasks to be completed directly from the display.
+
+![LifeHub grocery, chore, and wake-up checklists](docs/images/lifehub-checklists.jpg)
+
+### Sleep Planning, Alerts, and Conflict Detection
+
+LifeHub creates an adaptive sleep plan targeting approximately 8.5–9 hours of sleep. It also displays unfinished tasks, schedule conflicts, and other alerts.
+
+![LifeHub sleep plan, alerts, and conflict detection](docs/images/lifehub-planning-alerts.jpg)
+
+### Touchscreen Sleep Mode
+
+The sleep overlay reduces distraction when the dashboard is not in use. Tapping anywhere on the touchscreen wakes the interface.
+
+![LifeHub touchscreen sleep mode](docs/images/lifehub-sleep-mode.jpg)
+
+## Current Features
+
+- Raspberry Pi-hosted Python backend
+- Responsive local web dashboard
+- 10.1-inch touchscreen interface
+- Automatic Chromium fullscreen startup
+- Current activity and next-event display
+- Today timeline and seven-day calendar
+- Tomorrow preview
+- Schedulefly work schedule import
+- Canvas-ready assignment system
+- Structured daily workout plans
+- Adaptive workout scheduling around gym hours
+- Wake-up and wind-down planning
+- 8.5–9-hour sleep target
+- Hydration tracking
+- Grocery, chore, and wake-up checklists
+- Weather from Open-Meteo
+- Schedule conflict detection
+- Urgent and stale-data alerts
+- Manual reload and synchronization controls
+- Touchscreen sleep overlay
+- Mobile-friendly control layout
+- Server-Sent Events for live dashboard updates
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    A["Canvas iCal"] --> I["Source adapters"]
-    B["Google Calendar / Schedulefly sync"] --> I
-    C["Local grocery and hydration state"] --> I
-    D["Workout and chore templates"] --> I
-    I --> N["Normalized Python models"]
-    N --> S["Scheduling + alert engine"]
+    A["Canvas iCal / Assignment Feed"] --> I["Source Adapters"]
+    B["Schedulefly Work Schedule"] --> I
+    C["Weather and Local State"] --> I
+    D["Workout and Chore Templates"] --> I
+    I --> N["Normalized Python Models"]
+    N --> S["Scheduling and Alert Engine"]
     S --> J["DashboardState JSON"]
-    J --> W["Local one-screen web dashboard"]
-    J --> E["ESP32 Wi-Fi client"]
+    J --> W["Local Touchscreen Web Dashboard"]
+    J --> M["Mobile Browser Interface"]
+    J --> E["Future ESP32 Client"]
 ```
 
-The source adapters should only normalize external data. Scheduling decisions live in one engine, and display clients only render `DashboardState`. This keeps Canvas, Google, and future hardware changes isolated.
+External data is normalized by source adapters before it enters the scheduling system. Scheduling decisions are handled by a central Python engine, while the browser interface only renders the resulting `DashboardState`.
+
+This structure keeps external services, scheduling rules, and display clients separated.
 
 ## Folder Structure
 
 ```text
 lifehub/
-  models.py        Shared dataclasses and ESP32-facing contract
-  data_loader.py   Mock source adapter
-  scheduler.py     Now, next, workout, wind-down, and alert rules
+  models.py        Shared data models and dashboard contract
+  data_loader.py   Local and mock-data source adapters
+  scheduler.py     Scheduling, workout, sleep, and alert rules
   dashboard.py     DashboardState assembler
-  server.py        Local JSON API and static web server
-mock_data/         Editable prototype inputs
-static/            One-screen browser preview
-tests/             Scheduling tests
-scripts/           Utility scripts
-examples/          Exported example ESP32 payload
+  server.py        Local API and static web server
+
+mock_data/         Editable schedules, templates, and configuration
+static/            Touchscreen web interface
+tests/             Automated scheduling and backend tests
+scripts/           Sync, refresh, and export utilities
+examples/          Example dashboard payloads
+docs/images/       README screenshots and hardware photos
 ```
 
-## Run It
+## Running LifeHub
 
-No credentials or third-party packages are required.
+No third-party packages are required for the basic local prototype.
+
+### Run the Tests
 
 ```powershell
 python -m unittest discover -v
+```
+
+### Start the Server
+
+```powershell
 python -m lifehub.server
 ```
 
-Open `http://127.0.0.1:8000`. The ESP32-style JSON is at `http://127.0.0.1:8000/api/dashboard`.
+Open:
 
-The browser dashboard is optimized for the HAMTYSAN 10.1-inch 1024x600 touchscreen. It uses a fixed-height layout with a horizontally swipeable card rail and 40px-or-larger touch controls.
-
-To write a snapshot payload:
-
-```powershell
-python scripts/export_dashboard.py
+```text
+http://127.0.0.1:8000
 ```
+
+The dashboard JSON API is available at:
+
+```text
+http://127.0.0.1:8000/api/dashboard
+```
+
+To access LifeHub from another device on the same network, replace `127.0.0.1` with the Raspberry Pi's local IP address:
+
+```text
+http://YOUR-RASPBERRY-PI-IP:8000/
+```
+
+## Touchscreen Interface
+
+The dashboard is optimized for the HAMTYSAN 10.1-inch 1024×600 touchscreen.
+
+The interface includes:
+
+- Horizontally swipeable dashboard sections
+- Touch controls at least 40 pixels tall
+- Today and week calendar views
+- Reload and sleep controls
+- Touch-friendly checklist buttons
+- A mobile layout that changes to vertical scrolling on smaller screens
 
 ## Scheduling Rules
 
-- **Now:** active calendar event, then active workout, otherwise an open focus block.
-- **Next:** earliest upcoming event or unsubmitted assignment deadline.
-- **Workout:** searches from now or 5:00 AM through the usable morning window, skipping calendar conflicts.
-- **Workout plan:** stores each day as structured sections with exercises, sets, reps, technical cues, and rest periods.
-- **Lift day:** start must be found by 11:15 AM and finish before noon.
-- **Non-lift day:** start must be found by 11:30 AM and finish before noon.
-- **Backup:** strength circuit for missed lift days; easy run or mobility for missed non-lift days.
-- **Wind-down:** tomorrow's first important event minus wake routine, optional morning workout, desired sleep, and wind-down duration.
-- **Sleep target:** plans for 8 hours 45 minutes by default, within the preferred 8.5-9 hour range.
-- **Wake-up routine:** exposes wake time plus stretch, rollout, shower, breakfast, and hydration check steps.
-- **Assignments:** sorted only by due date and labeled overdue, due today, due tomorrow, due this week, or later.
+- **Now:** Shows the active calendar event, active workout, or an open focus block.
+- **Next:** Shows the earliest upcoming calendar event or unsubmitted assignment.
+- **Workout scheduling:** Searches for an available morning workout window that avoids calendar conflicts.
+- **Wake-up time:** Scheduled at least one hour before the workout.
+- **Lift days:** Must begin by approximately 11:15 AM and finish before noon.
+- **Non-lift days:** Must begin by approximately 11:30 AM and finish before noon.
+- **Backup plans:** Provides an alternative session when the preferred workout cannot fit.
+- **Wind-down:** Calculated from the next morning's workout, wake routine, sleep target, and first important event.
+- **Sleep target:** Defaults to 8 hours and 45 minutes within a preferred 8.5–9-hour range.
+- **Wake-up routine:** Includes stretching, rollout, shower, breakfast, and hydration.
+- **Assignments:** Sorted by due date rather than a manually assigned priority.
+
+## Workout Planning
+
+Daily workouts are stored as structured sections instead of a single block of text.
+
+A workout can include:
+
+- Warm-up
+- Mobility
+- Sprint or technical work
+- Lifting exercises
+- Sets and repetitions
+- Rest periods
+- Technical cues
+- Cooldown
+- Backup workout options
+
+The scheduler adjusts workout timing around calendar events and gym operating hours.
+
+## Touch Checklists
+
+Chores, groceries, and wake-up steps can be completed directly from the touchscreen.
+
+Checklist cards use status colors:
+
+- Red when nothing is complete
+- Yellow when partially complete
+- Green when complete
+
+The top `Done` button can complete an entire section at once.
 
 ## Alert Levels
 
@@ -77,58 +207,53 @@ python scripts/export_dashboard.py
 | `urgent` | Within 2 hours |
 | `critical` | Within 30 minutes or overdue |
 
-## Integration Roadmap
+LifeHub also reports stale synchronization data and scheduling conflicts.
 
-1. **Canvas iCal:** `scripts/refresh_canvas.py` downloads the private Canvas calendar feed and maps VEVENT items to `Assignment`. Keep the feed URL only in the `CANVAS_ICAL_URL` environment variable.
-2. **Google Calendar:** use Google Calendar API read-only access or private iCal feeds, then map events to `CalendarEvent`.
-3. **Schedulefly:** the current prototype includes an authenticated weekly schedule snapshot because no calendar-feed control was visible in the employee account. Replace snapshots through the supported Google Calendar synchronization or direct feed if the employer account exposes one.
-4. **Grocery web app:** add authenticated local CRUD endpoints and persist groceries in SQLite.
-5. **ESP32:** poll `/api/dashboard`, cache the last good payload, render only normalized fields, and send button actions to small local endpoints.
-6. **Persistence:** move hydration, grocery, dismissed-alert, and chore completion state from JSON to SQLite.
-7. **Operations:** run the backend as a Raspberry Pi service and add sync timestamps, retries, and stale-data alerts.
+## Live Synchronization and Weather
 
-## Touch Checklists
+LifeHub refreshes supported data sources every 15 minutes.
 
-Chores, groceries, and wake-up steps persist for the current day. Tap individual items or the top `Done` button. Cards show red with nothing complete, yellow when partially complete, and green when complete.
+It currently supports:
 
-The prototype intentionally does not scrape either login page.
-## Live sync, weather, and phone controls
+- Credential-free Golden, Colorado weather from Open-Meteo
+- Schedulefly work schedule updates
+- Canvas-ready assignment feeds
+- Live dashboard updates through Server-Sent Events
+- Manual synchronization from the touchscreen or phone interface
+- Stale-data detection
 
-LifeHub now refreshes supported data sources every 15 minutes, fetches credential-free
-Golden weather from Open-Meteo, reports stale snapshots, and sends dashboard changes
-to every open screen using Server-Sent Events.
-
-The server listens on the local network. On a phone connected to the same Wi-Fi, open:
+Configuration settings are stored in:
 
 ```text
-http://YOUR-RASPBERRY-PI-IP:8000/
+mock_data/lifehub_config.json
 ```
 
-At phone width the dashboard becomes a vertically scrolling control interface with
-quick buttons for hydration, chores, groceries, tomorrow, and manual synchronization.
+Private calendar URLs should not be committed to GitHub. Store them through environment variables or another ignored local configuration file.
 
-Settings live in `mock_data/lifehub_config.json`. Paste private iCal URLs into
-`canvas_ical_url` and `schedulefly_ical_url` to enable automatic Canvas and work
-schedule updates. Leave either blank to continue using its imported snapshot.
+## Schedulefly Synchronization
 
-Do not store Schedulefly passwords in the project. Use Schedulefly's Google Calendar
-integration/private calendar feed when possible; LifeHub will refresh it on startup
-and during normal background sync.
+LifeHub can update the work schedule using either a calendar feed or a browser-session parser.
 
-To refresh Schedulefly once from the Pi:
+To refresh Schedulefly manually on the Raspberry Pi:
 
 ```bash
 cd "/home/vaughn2014/LifeHub Project"
 python3 scripts/refresh_schedulefly.py
 ```
 
-To run that every morning, add this to `crontab -e` on the Pi:
+To run the refresh every morning, add the following entry with:
+
+```bash
+crontab -e
+```
+
+Then add:
 
 ```text
 0 6 * * * cd "/home/vaughn2014/LifeHub Project" && python3 scripts/refresh_schedulefly.py
 ```
 
-If Schedulefly does not expose a calendar feed, use the browser-session updater:
+If Schedulefly does not expose a usable calendar feed, use the browser-session updater:
 
 ```bash
 cd "/home/vaughn2014/LifeHub Project"
@@ -137,11 +262,87 @@ python3 -m playwright install chromium
 python3 scripts/refresh_schedulefly_browser.py --headed
 ```
 
-Log into Schedulefly in the browser window once. After it updates successfully, add
-this morning refresh to `crontab -e`:
+Sign in through the browser window the first time it opens.
+
+After a successful refresh, the browser-based updater can also be scheduled:
 
 ```text
 0 6 * * * cd "/home/vaughn2014/LifeHub Project" && python3 scripts/refresh_schedulefly_browser.py
 ```
 
-If Schedulefly logs out, run the `--headed` command again and sign in once more.
+If the Schedulefly session expires, rerun the command with `--headed` and sign in again.
+
+Do not store Schedulefly passwords, browser cookies, session files, or account credentials in the repository.
+
+## Testing
+
+Run all automated tests with:
+
+```powershell
+python -m unittest discover -v
+```
+
+The test suite covers scheduling behavior and backend logic.
+
+## Exporting a Dashboard Snapshot
+
+To generate an example dashboard payload:
+
+```powershell
+python scripts/export_dashboard.py
+```
+
+The generated JSON can be used for debugging, documentation, or a future ESP32 display client.
+
+## Planned Improvements
+
+- Complete live Canvas assignment integration
+- Replace remaining mock data with authenticated local sources
+- Add SQLite persistence for groceries, hydration, chores, and dismissed alerts
+- Improve mobile editing controls
+- Add more detailed sync history and error reporting
+- Package Raspberry Pi installation and startup scripts
+- Explore an ESP32 secondary display or physical control interface
+- Add additional sensors and hardware integrations
+
+## Privacy and Security
+
+The public repository should never contain:
+
+- Passwords
+- API keys
+- Canvas private feed URLs
+- Schedulefly login details
+- Browser cookies or session files
+- Personal work schedules
+- Personal assignment data
+- Private calendar data
+
+Use environment variables or ignored local configuration files for private information.
+
+## Hardware
+
+- Raspberry Pi 4
+- HAMTYSAN 10.1-inch 1024×600 capacitive touchscreen
+- 32 GB microSD card
+- USB-C Raspberry Pi power supply
+- HDMI and USB touchscreen connections
+
+## Technologies
+
+- Python
+- HTML
+- CSS
+- JavaScript
+- JSON
+- Server-Sent Events
+- Raspberry Pi OS
+- Chromium
+- Git and GitHub
+- Open-Meteo API
+
+## Status
+
+LifeHub is an active personal engineering project. The core dashboard, scheduling logic, touchscreen interface, Raspberry Pi deployment, Schedulefly import, weather integration, sleep planning, checklists, and automated tests are currently working.
+
+Additional integrations and hardware features will continue to be added as the project develops.
